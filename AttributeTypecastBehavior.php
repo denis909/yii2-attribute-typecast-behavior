@@ -56,7 +56,7 @@ class AttributeTypecastBehavior extends \yii\behaviors\AttributeTypecastBehavior
     {
         if (is_scalar($type) && ($type == static::TYPE_UNIX_TIMESTAMP))
         {
-            return !is_numeric($value) ? strtotime($value): $value;   
+            return ($value && !is_numeric($value)) ? strtotime($value): $value;   
         }
 
         return parent::typecastValue($value, $type);
